@@ -6,7 +6,7 @@ import './index.css';
 // Register PWA service worker for Android Chrome installability
 if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {
       // Ignore registration failures in restricted environments
     });
   });
