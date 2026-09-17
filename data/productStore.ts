@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, createElement } from 'react';
 import { ProductConfig } from '../types';
 import { DEFAULT_PRODUCT_CONFIG } from './productData';
 
@@ -15,8 +15,6 @@ const ProductContext = createContext<ProductContextType | null>(null);
 
 export function ProductProvider({ children }: { children: ReactNode }) {
   const [product, setProduct] = useState<ProductConfig>(DEFAULT_PRODUCT_CONFIG);
-  const [isLoading] = useState(false);
-  const [error] = useState<string | null>(null);
 
   const refreshProduct = async (): Promise<ProductConfig> => {
     setProduct(DEFAULT_PRODUCT_CONFIG);
@@ -26,7 +24,7 @@ export function ProductProvider({ children }: { children: ReactNode }) {
   const saveProduct = async (
     updates: Partial<ProductConfig>
   ): Promise<ProductConfig> => {
-    const updated = {
+    const updated: ProductConfig = {
       ...product,
       ...updates,
       updatedAt: new Date().toISOString(),
@@ -41,19 +39,19 @@ export function ProductProvider({ children }: { children: ReactNode }) {
     return DEFAULT_PRODUCT_CONFIG;
   };
 
-  return (
-    <ProductContext.Provider
-      value={{
+  return createElement(
+    ProductContext.Provider,
+    {
+      value: {
         product,
-        isLoading,
-        error,
+        isLoading: false,
+        error: null,
         refreshProduct,
         saveProduct,
         resetProduct,
-      }}
-    >
-      {children}
-    </ProductContext.Provider>
+      },
+    },
+    children
   );
 }
 
@@ -66,9 +64,10 @@ export function useProduct(): ProductContextType {
       isLoading: false,
       error: null,
       refreshProduct: async () => DEFAULT_PRODUCT_CONFIG,
-      saveProduct: async (updates) => ({
+      saveProduct: async (updates: Partial<ProductConfig>) => ({
         ...DEFAULT_PRODUCT_CONFIG,
         ...updates,
+        updatedAt: new Date().toISOString(),
       }),
       resetProduct: async () => DEFAULT_PRODUCT_CONFIG,
     };
