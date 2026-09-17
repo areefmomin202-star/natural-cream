@@ -1,13 +1,28 @@
 import { useState } from 'react';
 import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
-import { FAQ_ITEMS, getWhatsAppOrderUrl, WHATSAPP_DISPLAY_NUMBER } from '../data/productData';
+import { FAQ_ITEMS, getDynamicOrderWhatsAppUrl, useProduct } from '../data/productData';
 
 export function FaqSection() {
+  const { product } = useProduct();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  const dynamicFaqs = FAQ_ITEMS.map((item) => {
+    return {
+      question: item.question
+        .replace(/₹399/g, `₹${product.price}`)
+        .replace(/₹999/g, `₹${product.mrp}`),
+      answer: item.answer
+        .replace(/₹600 OFF/g, `₹${product.savings} OFF`)
+        .replace(/60% OFF/g, `${product.discountPercent}% OFF`)
+        .replace(/₹399/g, `₹${product.price}`)
+        .replace(/₹999/g, `₹${product.mrp}`)
+        .replace(/\+91 7892658110/g, product.whatsappDisplayNumber)
+    };
+  });
 
   return (
     <section className="py-12 bg-stone-50 border-t border-stone-200">
@@ -21,12 +36,12 @@ export function FaqSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-xs md:text-sm text-stone-500 mt-1">
-            Everything you need to know about ordering Natural Cream
+            Everything you need to know about ordering {product.name}
           </p>
         </div>
 
         <div className="space-y-3">
-          {FAQ_ITEMS.map((item, idx) => {
+          {dynamicFaqs.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
@@ -69,13 +84,13 @@ export function FaqSection() {
                 Have a different question or need skin consultation?
               </h4>
               <p className="text-xs text-emerald-800">
-                Chat directly with our support team on WhatsApp at {WHATSAPP_DISPLAY_NUMBER}
+                Chat directly with our support team on WhatsApp at {product.whatsappDisplayNumber}
               </p>
             </div>
           </div>
 
           <a
-            href={getWhatsAppOrderUrl('Hello Natural Cream team, I have a question before placing my order.')}
+            href={getDynamicOrderWhatsAppUrl(product.whatsappNumber, product.name, 'General Inquiry', 1, product.price)}
             target="_blank"
             rel="noopener noreferrer"
             id="faq-whatsapp-support-btn"
