@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/natural-cream/',
+    base: '/naturalcreamofficial/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
