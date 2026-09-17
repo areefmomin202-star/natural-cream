@@ -136,7 +136,7 @@ export function ProductGallery() {
 
             <div className="w-full max-h-[70vh] flex items-center justify-center p-2">
               <img
-                src={activeImage.src}
+                src={`${import.meta.env.BASE_URL}${activeImage.src.replace(/^\/+/, '')}`}
                 alt={activeImage.alt}
                 referrerPolicy="no-referrer"
                 className="max-h-[65vh] w-auto object-contain rounded-lg"
