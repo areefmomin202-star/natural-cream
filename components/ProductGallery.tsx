@@ -42,7 +42,7 @@ export function ProductGallery() {
           className="w-full max-w-md aspect-square relative flex items-center justify-center cursor-zoom-in group select-none"
         >
           <img
-            src={activeImage.src}
+            src={`${import.meta.env.BASE_URL}${activeImage.src.replace(/^\/+/, '')}`}
             alt={activeImage.alt}
             referrerPolicy="no-referrer"
             className="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
