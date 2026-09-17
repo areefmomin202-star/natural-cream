@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode, createElement } from 'react';
 import { ProductConfig } from '../types';
-import { DEFAULT_PRODUCT_CONFIG } from './productData';
+
 
 interface ProductContextType {
   product: ProductConfig;
