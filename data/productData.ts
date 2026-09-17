@@ -183,4 +183,4 @@ export function getDynamicOrderWhatsAppUrl(
   return `https://wa.me/${num}?text=${encodeURIComponent(message)}`;
 }
 
-export { useProduct, ProductProvider, DEFAULT_PRODUCT_CONFIG } from './productStore';
+export { useProduct, ProductProvider } from './productStore';
