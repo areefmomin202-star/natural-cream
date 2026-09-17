@@ -9,7 +9,7 @@ export const PRODUCT_IMAGES: ProductImage[] = [
     id: 'front',
     title: 'NATURAL CREAM',
     subtitle: 'Wake up to Gorgeous Skin',
-    src: '/natural-cream/img_jar_front.jpg',
+    src: '/img_jar_front.jpg',
     badge: 'Front Label',
     alt: 'NATURAL CREAM - Wake up to Gorgeous Skin (glossy black jar with silver glitter lid)'
   },
@@ -17,7 +17,7 @@ export const PRODUCT_IMAGES: ProductImage[] = [
     id: 'back',
     title: 'Directions of Use',
     subtitle: 'To be used before going to sleep only, wash and dry the skin properly then apply',
-    src: '/natural-cream/img_jar_instructions.jpg',
+    src: '/img_jar_instructions.jpg',
     badge: 'Back Label',
     alt: 'NATURAL CREAM back label: Use: To be used before going to sleep only, wash and dry the skin properly then apply'
   }
