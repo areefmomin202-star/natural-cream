@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode, createElement } from 'react';
+export { DEFAULT_PRODUCT_CONFIG } from './productData';
 import { ProductConfig } from '../types';
 import { DEFAULT_PRODUCT_CONFIG } from './productData';
 
