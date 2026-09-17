@@ -1,7 +1,10 @@
 import { Sparkles, HeartHandshake, ShieldCheck, Feather, Award, Leaf, Zap } from 'lucide-react';
-import { PRODUCT_BENEFITS } from '../data/productData';
+import { PRODUCT_BENEFITS, useProduct } from '../data/productData';
 
 export function Benefits() {
+  const { product } = useProduct();
+  const benefits = product.benefits && product.benefits.length > 0 ? product.benefits : PRODUCT_BENEFITS;
+
   return (
     <section className="py-12 bg-[#fcfbf9]">
       <div className="max-w-5xl mx-auto px-4">
@@ -10,7 +13,7 @@ export function Benefits() {
             Proven Night Nutrition
           </span>
           <h2 className="text-2xl md:text-3xl font-extrabold text-stone-950 tracking-tight font-sans-clean mt-3">
-            Why Thousands Choose Natural Cream
+            Why Thousands Choose {product.name}
           </h2>
           <p className="text-sm text-stone-600 mt-2 font-serif-luxury italic text-base">
             Crafted to reveal youthful, supple, and radiant skin with every morning awakening.
@@ -19,7 +22,7 @@ export function Benefits() {
 
         {/* Benefits Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-          {PRODUCT_BENEFITS.map((benefit, i) => (
+          {benefits.map((benefit, i) => (
             <div
               key={benefit.id}
               className="bg-white rounded-2xl p-6 border border-stone-200/80 shadow-xs hover:border-amber-300 hover:shadow-md transition-all flex items-start gap-4"
