@@ -81,7 +81,7 @@ export function ProductGallery() {
             >
               <div className="w-14 h-14 shrink-0 rounded-lg overflow-hidden bg-stone-100 border border-stone-200 flex items-center justify-center">
                 <img
-                  src={img.src}
+                  src={`${import.meta.env.BASE_URL}${img.src.replace(/^\/+/, '')}`}
                   alt={img.alt}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-contain"
